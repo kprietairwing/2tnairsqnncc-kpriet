@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 TN Air Squadron NCC - Coimbatore Group</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --iaf-blue: #1f4e79;
+            --iaf-light: #4a90e2;
+            --iaf-dark: #0f2c4c;
+            --ncc-red: #c53030;
+            --ncc-green: #2f855a;
+            --ncc-navy: #0a2239;
+            --ncc-lightnavy: #1a3a5c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--ncc-navy) 0%, var(--ncc-lightnavy) 100%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .headline {
+            font-family: 'Rajdhani', 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+            font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Tricolor banner */
+        .tricolor {
+            background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+            height: 4px;
+            width: 100%;
+            position: relative;
+            z-index: 50;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 4px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 34, 57, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 40;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .left-insignia {
+            height: 48px;
+            width: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0 auto;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--iaf-blue), var(--iaf-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(15,76,129,0.3);
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .achievements-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .achievements-link:hover {
+            color: var(--iaf-light);
+        }
+
+        .achievements-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--iaf-light);
+            transition: width 0.3s ease;
+        }
+
+        .achievements-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(10, 34, 57, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            list-style: none;
+            padding: 1rem;
+            z-index: 50;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown-link:hover {
+            color: var(--iaf-light);
+        }
+
+        .right-insignia {
+            height: 48px;
+            width: auto;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-align: left;
+            padding: 6rem 2rem;
+            background: linear-gradient(rgba(10,34,57,0.4), rgba(10,34,57,0.6)), url("images/jet.jpg");
+            background-size: cover;
+            background-position: center right;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            margin-left: 5%;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .highlight-blue { color: #2da8ff; }
+
+        .highlight-nation {
+            background: linear-gradient(to right, #ff9933 0%, #ffffff 50%, #138808 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .btn.primary {
+            background: linear-gradient(45deg, #007bff, #00bfff);
+            box-shadow: 0 0 25px rgba(0, 123, 255, 0.5);
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn.secondary {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.3));
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--iaf-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--iaf-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--iaf-blue), var(--iaf-light));
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+        }
+
+        .values {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .value-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 120px;
+        }
+
+        .value-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(45deg, var(--iaf-blue), var(--iaf-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-tag-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--iaf-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-tag-text {
+            color: var(--iaf-light);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            border-color: rgba(74, 144, 226, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .special-card {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(15, 76, 129, 0.1));
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.2);
+        }
+
+        .special-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .card-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .ano-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .about-left {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--iaf-blue), var(--iaf-light));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--iaf-blue);
+            border-radius: 50%;
+            border: 3px solid var(--iaf-light);
+        }
+
+        .timeline-year {
+            color: var(--iaf-light);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, var(--ncc-lightnavy), var(--iaf-blue));
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .video-item {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--ncc-lightnavy), var(--iaf-blue));
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--iaf-blue), var(--iaf-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--iaf-blue);
+            box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        .form-select option {
+            background: var(--ncc-navy);
+            color: white;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-input {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--iaf-blue);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checkbox-input {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-top: 0.125rem;
+            accent-color: var(--iaf-blue);
+        }
+
+        .checkbox-label {
+            flex: 1;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.125rem;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--iaf-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-title {
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 0;
+            background: linear-gradient(to bottom, var(--ncc-navy), #000);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--iaf-blue), var(--iaf-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+        }
+
+        .footer-motto {
+            margin-bottom: 2rem;
+        }
+
+        .footer-motto-main {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--iaf-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-motto-sub {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-tricolor {
+            background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+            height: 4px;
+            width: 128px;
+            margin: 0 auto 1.5rem;
+            border-radius: 2px;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dropdown-btn {
+                display: block;
+            }
+
+            .achievements-link {
+                display: none;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .contact-info {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content {
+                max-width: 650px;
+                margin-left: 5%;
+            }
+
+            .values {
+                gap: 3rem;
+            }
+
+            .timeline {
+                padding-left: 4rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .hidden { display: none; }
+        .block { display: block; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .w-full { width: 100%; }
+    </style>
+</head>
+<body>
+    <!-- Tricolor Banner -->
+    <div class="tricolor"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Roundel_of_India.svg" alt="Indian Air Force Roundel" class="left-insignia">
+                <div class="logo">
+                    <div class="logo-icon">✈️</div>
+                    <div class="logo-text">
+                        <span>2 TN AIR SQN NCC</span>
+                        <span>KPRIET</span>
+                        <span>Coimbatore Group</span>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <a href="achievements.html" class="achievements-link">Achievements</a>
+                    <button class="dropdown-btn" id="dropdown-btn">☰</button>
+                    <ul class="dropdown-menu" id="dropdown-menu">
+                        <li><a href="#home" class="dropdown-link">Home</a></li>
+                        <li><a href="#about" class="dropdown-link">About</a></li>
+                        <li><a href="#ano" class="dropdown-link">About Our ANO</a></li>
+                        <li><a href="#gallery" class="dropdown-link">Gallery</a></li>
+                        <li><a href="#activities" class="dropdown-link">Activities</a></li>
+                        <li><a href="#benefits" class="dropdown-link">Benefits</a></li>
+                        <li><a href="#contact" class="dropdown-link">Contact</a></li>
+                    </ul>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Emblem_of_National_Cadet_Corps_%28India%29.png" alt="NCC Symbol" class="right-insignia">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content reveal">
+            <div class="badge">NCC AIR WING • INDIAN AIR FORCE ETHOS</div>
+            <h1>
+                Join the Elite. <br>
+                Aim <span class="highlight-blue">Higher</span> <br>
+                Serve the <span class="highlight-nation">Nation</span>
+            </h1>
+            <p>
+                At the 2 TN Air Squadron NCC, we forge leaders with discipline, courage, and
+                an unwavering spirit of service. Step into a legacy of excellence—aviation exposure,
+                adventure training, character building, and lifelong camaraderie.
+            </p>
+            <div class="btn-group">
+                <a href="#about" class="btn primary">✈️ Why Air Wing?</a>
+                <a href="#contact" class="btn secondary">➡️ Apply to Join</a>
+            </div>
+            <div class="values">
+                <div class="value-item">
+                    <div class="value-icon">🎖️</div>
+                    <span>Discipline</span>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">👑</div>
+                    <span>Leadership</span>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🌍</div>
+                    <span>Service</span>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">✈️</div>
+                    <span>Aviation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">
+                    <div class="section-tag-icon">✈️</div>
+                    <span class="section-tag-text">WHO WE ARE</span>
+                </div>
+                <h2 class="headline">Our Legacy</h2>
+                <p>Discover the legacy and mission of 2 TN Air Squadron NCC, where young minds are shaped into future leaders of our nation.</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="about-left card reveal">
+                    <h3>Our Legacy</h3>
+                    <p>The 2 TN Air Squadron NCC (Coimbatore Group) has been a cornerstone of youth development in Tamil Nadu, dedicated to nurturing discipline, leadership, and patriotic spirit among college students since its establishment.</p>
+                    <p>As part of the prestigious Air Wing of the National Cadet Corps, we provide unique opportunities for cadets to experience military training, aviation exposure, and character development that shapes them into responsible citizens and future leaders.</p>
+                    <p>Our squadron operates under the motto "Unity & Discipline," emphasizing the core values that guide every cadet's journey from enrollment to graduation.</p>
+                </div>
+                <div class="card special-card reveal">
+                    <h3>What Makes Us Special</h3>
+                    <ul class="card-features">
+                        <li>✈️ <span>Air Wing Training: Specialized aviation training and aircraft familiarization programs</span></li>
+                        <li>👑 <span>Leadership Development: Comprehensive programs to build command and management skills</span></li>
+                        <li>🌍 <span>Social Service: Community outreach and nation-building activities</span></li>
+                        <li>🎖️ <span>Career Benefits: NCC 'C' certificate advantages in defense and government services</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About ANO Section -->
+    <section class="section" id="ano">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">
+                    <div class="section-tag-icon">👤</div>
+                    <span class="section-tag-text">OUR LEADER</span>
+                </div>
+                <h2 class="headline">About Our ANO</h2>
+                <p>Meet the dedicated Associate NCC Officer who guides our squadron with vision and commitment.</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="card reveal">
+                    <img src="https://via.placeholder.com/300x400?text=ANO+Picture" alt="ANO Picture" class="ano-image">
+                </div>
+                <div class="card reveal">
+                    <h3>Our Associate NCC Officer</h3>
+                    <p>Our Associate NCC Officer (ANO) is the backbone of 2 TN Air Squadron NCC, leading with dedication and inspiring cadets to achieve excellence. With extensive experience in training and mentoring, our ANO brings a wealth of knowledge in military discipline, aviation, and leadership development.</p>
+                    <p>Under her guidance, cadets undergo rigorous training programs that instill values of unity, discipline, and service. Her commitment to youth development and nation-building ensures that every cadet is prepared for both personal and professional success.</p>
+                    <ul class="card-features">
+                        <li>🎓 <span>Expert in NCC training methodologies</span></li>
+                        <li>✈️ <span>Passionate about aviation and military education</span></li>
+                        <li>👑 <span>Dedicated to fostering leadership and teamwork</span></li>
+                        <li>🌍 <span>Leads community service initiatives</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">
+                    <div class="section-tag-icon">📸</div>
+                    <span class="section-tag-text">OUR MOMENTS</span>
+                </div>
+                <h2 class="headline">Photo Gallery</h2>
+                <p>A collection of prestigious moments from our unit's awards, activities, and achievements.</p>
+            </div>
+            <div class="gallery grid grid-3 reveal">
+                <div class="gallery-item">📸 Add Photo 1</div>
+                <div class="gallery-item">📸 Add Photo 2</div>
+                <div class="gallery-item">📸 Add Photo 3</div>
+                <div class="gallery-item">📸 Add Photo 4</div>
+                <div class="gallery-item">📸 Add Photo 5</div>
+                <div class="gallery-item">📸 Add Photo 6</div>
+            </div>
+            <div class="section-header mt-6 reveal">
+                <h2 class="headline">Video Gallery</h2>
+                <p>Watch our cadets in action through drill videos and training sessions.</p>
+            </div>
+            <div class="grid grid-3 reveal">
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/placeholder1" title="Video 1" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/placeholder2" title="Video 2" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/placeholder3" title="Video 3" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="section" id="activities">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">
+                    <div class="section-tag-icon">⚙️</div>
+                    <span class="section-tag-text">TRAINING PROGRAMS</span>
+                </div>
+                <h2 class="headline">Activities & Training</h2>
+                <p>Comprehensive training programs designed to develop leadership, discipline, and technical skills essential for military and civilian success.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card reveal">
+                    <div class="card-icon">✈️</div>
+                    <h3>Aviation Training</h3>
+                    <p>Hands-on experience with aircraft systems, flight principles, and aviation technology through visits to air bases and interaction with IAF personnel.</p>
+                    <ul class="card-features">
+                        <li>✈️ Aircraft Familiarization</li>
+                        <li>🖥️ Flight Simulators</li>
+                        <li>📚 Aviation Theory</li>
+                        <li>🏠 Air Base Visits</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">💪</div>
+                    <h3>Physical Fitness</h3>
+                    <p>Rigorous physical training programs to build stamina, strength, and mental toughness essential for military discipline and personal health.</p>
+                    <ul class="card-features">
+                        <li>🏃 Daily PT Sessions</li>
+                        <li>🛠️ Obstacle Courses</li>
+                        <li>🏋️ Endurance Training</li>
+                        <li>⚽ Sports Activities</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">👑</div>
+                    <h3>Leadership Development</h3>
+                    <p>Command training and leadership exercises that prepare cadets for responsible positions in military and civilian organizations.</p>
+                    <ul class="card-features">
+                        <li>🗣️ Squad Commands</li>
+                        <li>🧠 Decision Making</li>
+                        <li>🎤 Public Speaking</li>
+                        <li>🤝 Team Building</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🗺️</div>
+                    <h3>Field Training</h3>
+                    <p>Outdoor training exercises including map reading, navigation, survival skills, and tactical operations in realistic environments.</p>
+                    <ul class="card-features">
+                        <li>🧭 Navigation Skills</li>
+                        <li>⛺ Survival Training</li>
+                        <li>🏕️ Camp Activities</li>
+                        <li>⚔️ Tactical Exercises</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🔧</div>
+                    <h3>Technical Training</h3>
+                    <p>Specialized technical courses covering military technology, communication systems, and modern warfare equipment and techniques.</p>
+                    <ul class="card-features">
+                        <li>📡 Radio Operations</li>
+                        <li>🛠️ Equipment Handling</li>
+                        <li>💻 Technology Updates</li>
+                        <li>⚙️ Modern Systems</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">📚</div>
+                    <h3>Academic Support</h3>
+                    <p>Educational programs and academic support to enhance knowledge in subjects relevant to military science and general development.</p>
+                    <ul class="card-features">
+                        <li>📜 Military History</li>
+                        <li>🌐 General Knowledge</li>
+                        <li>📰 Current Affairs</li>
+                        <li>🛠️ Skill Development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Responsibility Section -->
+    <section class="section" id="social">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">
+                    <div class="section-tag-icon">🌱</div>
+                    <span class="section-tag-text">SOCIAL RESPONSIBILITY</span>
+                </div>
+                <h2 class="headline">Social Service & Community Outreach</h2>
+                <p>Our cadets actively contribute to society through various social service initiatives, disaster relief operations, and community development programs.</p>
+            </div>
+            <div class="gallery reveal">
+                <div class="gallery-item">🌳</div>
+                <div class="gallery-item">🩺</div>
+                <div class="gallery-item">📚</div>
+            </div>
+            <div class="grid grid-3 mt-6">
+                <div class="card reveal">
+                    <div class="card-icon">🌳</div>
+                    <h3>Environmental Conservation</h3>
+                    <p>Tree plantation drives, waste management campaigns, and awareness programs to protect our environment for future generations.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🩺</div>
+                    <h3>Health & Wellness</h3>
+                    <p>Health awareness campaigns, blood donation drives, and first aid training programs for community health improvement.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">📚</div>
+                    <h3>Education Support</h3>
+                    <p>Literacy programs, educational material distribution, and tutoring sessions for underprivileged children in rural areas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section" id="benefits">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">
+                    <div class="section-tag-icon">🎯</div>
+                    <span class="section-tag-text">WHY JOIN NCC AIR WING</span>
+                </div>
+                <h2 class="headline">Benefits & Opportunities</h2>
+                <p>Discover the exclusive advantages and career opportunities that come with NCC Air Wing training.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card reveal">
+                    <div class="card-icon">🎖️</div>
+                    <h3>Career Advantages</h3>
+                    <p>NCC 'C' certificate provides significant benefits in defense services recruitment, job interviews, and higher education admissions.</p>
+                    <ul class="card-features">
+                        <li>🎖️ Defense Services Priority</li>
+                        <li>💼 Government Job Benefits</li>
+                        <li>🎓 Higher Education Quotas</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">👑</div>
+                    <h3>Leadership Development</h3>
+                    <p>Comprehensive leadership training through camps, command positions, and real-world responsibility assignments.</p>
+                    <ul class="card-features">
+                        <li>🗣️ Command Training</li>
+                        <li>🧠 Decision Making Skills</li>
+                        <li>🤝 Team Management</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🏕️</div>
+                    <h3>Adventure & Travel</h3>
+                    <p>Participate in national camps, adventure activities, and travel opportunities across India.</p>
+                    <ul class="card-features">
+                        <li>🏕️ National Camps</li>
+                        <li>⛰️ Adventure Training</li>
+                        <li>🌍 Cultural Exchange</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">✈️</div>
+                    <h3>Aviation Exposure</h3>
+                    <p>Unique Air Wing opportunities including aircraft visits, aviation workshops, and flying experience.</p>
+                    <ul class="card-features">
+                        <li>✈️ Aircraft Familiarization</li>
+                        <li>🛠️ Aviation Workshops</li>
+                        <li>🛫 Flying Experience</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🏅</div>
+                    <h3>Scholarships & Awards</h3>
+                    <p>Merit-based scholarships, awards, and recognition for outstanding performance and achievement.</p>
+                    <ul class="card-features">
+                        <li>💰 Merit Scholarships</li>
+                        <li>🏅 Achievement Awards</li>
+                        <li>🎖️ National Recognition</li>
+                    </ul>
+                </div>
+                <div class="card reveal">
+                    <div class="card-icon">🌟</div>
+                    <h3>Personal Development</h3>
+                    <p>Build confidence, discipline, physical fitness, and strong character through structured training programs.</p>
+                    <ul class="card-features">
+                        <li>🌟 Confidence Building</li>
+                        <li>💪 Physical Fitness</li>
+                        <li>🧠 Character Development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-tag">
+                    <div class="section-tag-icon">📞</div>
+                    <span class="section-tag-text">GET IN TOUCH</span>
+                </div>
+                <h2 class="headline">Ready to Serve the Nation?</h2>
+                <p>Take the first step towards joining an elite organization that will shape your character, build your leadership skills, and provide you with opportunities to serve your country. Contact us to learn more about the recruitment process.</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="contact-info reveal">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <div class="contact-title">Squadron Location</div>
+                            <div class="contact-subtitle">Coimbatore Group, Tamil Nadu</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <div class="contact-title">Contact Number</div>
+                            <div class="contact-subtitle">Available on Request</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📅</div>
+                        <div class="contact-text">
+                            <div class="contact-title">Recruitment Period</div>
+                            <div class="contact-subtitle">September - October (Annual)</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🎓</div>
+                        <div class="contact-text">
+                            <div class="contact-title">Eligibility</div>
+                            <div class="contact-subtitle">College Students (Age 17-26)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-container reveal">
+                    <div class="form-header">
+                        <div class="form-icon">📝</div>
+                        <h3>Express Your Interest</h3>
+                        <p>Fill out the form below and we'll get back to you with recruitment details.</p>
+                    </div>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">First Name *</label>
+                                <input class="form-input" type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Last Name *</label>
+                                <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <input class="form-input" type="email" id="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number *</label>
+                            <input class="form-input" type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="college">College/Institution *</label>
+                                <input class="form-input" type="text" id="college" name="college" placeholder="College/Institution" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="year">Year of Study *</label>
+                                <select class="form-input form-select" id="year" name="year" required>
+                                    <option value="" disabled selected>Select Year</option>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="course">Course/Degree *</label>
+                            <input class="form-input" type="text" id="course" name="course" placeholder="Course/Degree" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="motivation">Why do you want to join NCC Air Wing?</label>
+                            <textarea class="form-input form-textarea" id="motivation" name="motivation" placeholder="Your motivation"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Previous Military/Disciplinary Experience</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input class="radio-input" type="radio" id="no-experience" name="experience" value="No previous experience" checked>
+                                    <label class="form-label" for="no-experience">No previous experience</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input class="radio-input" type="radio" id="ncc-experience" name="experience" value="Previous NCC experience">
+                                    <label class="form-label" for="ncc-experience">Previous NCC experience</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input class="radio-input" type="radio" id="other-experience" name="experience" value="Other military/disciplinary training">
+                                    <label class="form-label" for="other-experience">Other military/disciplinary training</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input class="checkbox-input" type="checkbox" id="terms" name="terms" required>
+                                <label class="checkbox-label" for="terms">
+                                    I agree to the terms and conditions and understand that this form is for expressing interest. Official recruitment process will be conducted separately. *
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn btn-submit" type="submit">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">✈️</div>
+                <div class="logo-text">
+                    <span>2 TN AIR SQN NCC</span>
+                    <span>KPRIET</span>
+                    <span>Coimbatore Group</span>
+                </div>
+            </div>
+            <div class="footer-motto">
+                <div class="footer-motto-main">Unity & Discipline</div>
+                <div class="footer-motto-sub">Mission • Integrity • Excellence</div>
+            </div>
+            <div class="footer-tricolor"></div>
+            <div class="footer-copyright">
+                © 2025 2 TN Air Squadron NCC. All rights reserved. <br>
+                Proudly serving the nation through youth development and character building.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dropdown Menu Toggle
+        const dropdownBtn = document.getElementById('dropdown-btn');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        if (dropdownBtn && dropdownMenu) {
+            dropdownBtn.addEventListener('click', () => dropdownMenu.classList.toggle('show'));
+
+            document.querySelectorAll('.dropdown-link').forEach(link => {
+                link.addEventListener('click', () => dropdownMenu.classList.remove('show'));
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        }
+
+        // Reveal animations
+        function revealElements() {
+            document.querySelectorAll('.reveal').forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('show');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealElements);
+        window.addEventListener('load', revealElements);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Form submission
+        const form = document.getElementById('contact-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+
+                // Required fields
+                const required = ['firstName', 'lastName', 'email', 'phone', 'college', 'year', 'course'];
+                const missing = required.filter(f => !data[f]);
+                if (missing.length) {
+                    alert(`Please fill: ${missing.join(', ')}`);
+                    return;
+                }
+
+                // Email validation
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+                    alert('Invalid email');
+                    return;
+                }
+
+                // Phone validation
+                if (!/^\+?[\d\s\-\(\)]{10,}$/.test(data.phone)) {
+                    alert('Invalid phone number');
+                    return;
+                }
+
+                // Terms
+                if (!data.terms) {
+                    alert('You must accept terms');
+                    return;
+                }
+
+                alert('✅ Thank you! We will contact you soon.');
+                this.reset();
+            });
+        }
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (header) {
+                header.style.background = 'rgba(10, 34, 57, 0.98)';
+            }
+        });
+    </script>
+</body>
+</html>
