@@ -593,6 +593,65 @@
             overflow: hidden;
             position: relative;
         }
+        
+        /* 3D Photo Carousel */
+        .photo-carousel-container {
+            perspective: 1200px; /* Adjusted for a more immersive 3D depth effect */
+            position: relative;
+            height: 600px; /* Increased height for larger visibility */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevents overflow during rotation */
+            margin: 2rem 0; /* Increased top margin to ensure full visibility below the "Photo Gallery" text */
+        }
+
+        .photo-carousel {
+            position: absolute;
+            width: 500px; /* Increased width for larger carousel base */
+            height: 50%;
+            transform-style: preserve-3d; /* Enables 3D transforms on children */
+            animation: carousel-rotate 50s infinite linear; /* Faster rotation for more dynamic feel (20s per cycle) */
+        }
+
+        @keyframes carousel-rotate {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .photo-carousel-item {
+            position: absolute;
+            width: 500px; /* Significantly increased item width for larger images */
+            height: 300px; /* Increased height to make items taller and more prominent */
+            background: linear-gradient(135deg, var(--ncc-lightnavy), var(--iaf-blue)); /* Keep your existing gradient */
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 3rem;
+            transition: transform 0.3s ease; /* Smooth hover effect */
+            backface-visibility: hidden; /* Hides back side during rotation */
+            transform: rotateY(calc(var(--i) * 60deg)) translateZ(500px); /* Reduced Z-translation for closer spacing between items, creating a tighter circle */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Added shadow for depth and creativity */
+        }
+
+        
+
+        /* If using <img> tags inside items (recommended for real images) */
+        .photo-carousel-image {
+            width: 200%;
+            height: 100%;
+            object-fit: cover; /* Ensures images fill the item without distortion */
+        }
+
+        
 
         /* Form Styles */
         .form-container {
@@ -1027,14 +1086,16 @@
                 <h2 class="headline">Photo Gallery</h2>
                 <p>A collection of prestigious moments from our unit's awards, activities, and achievements.</p>
             </div>
-            <div class="gallery grid grid-3 reveal">
-                <div class="gallery-item">📸 Add Photo 1</div>
-                <div class="gallery-item">📸 Add Photo 2</div>
-                <div class="gallery-item">📸 Add Photo 3</div>
-                <div class="gallery-item">📸 Add Photo 4</div>
-                <div class="gallery-item">📸 Add Photo 5</div>
-                <div class="gallery-item">📸 Add Photo 6</div>
-            </div>
+            <div class="photo-carousel-container reveal">
+      <div class="photo-carousel">
+        <div class="photo-carousel-item" style="--i:0">📸 Add Photo 1</div>
+        <div class="photo-carousel-item" style="--i:1">📸 Add Photo 2</div>
+        <div class="photo-carousel-item" style="--i:2">📸 Add Photo 3</div>
+        <div class="photo-carousel-item" style="--i:3">📸 Add Photo 4</div>
+        <div class="photo-carousel-item" style="--i:4">📸 Add Photo 5</div>
+        <div class="photo-carousel-item" style="--i:5">📸 Add Photo 6</div>
+      </div>
+    </div>
             <div class="section-header mt-6 reveal">
                 <h2 class="headline">Video Gallery</h2>
                 <p>Watch our cadets in action through drill videos and training sessions.</p>
@@ -1489,6 +1550,3 @@
 </body>
 
 </html>
-
-
-
