@@ -111,6 +111,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
 
         .left-insignia {
@@ -122,7 +123,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin: 0 auto;
+            transform: translateX(2rem);
         }
 
         .logo-icon {
@@ -146,6 +147,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin-right: 1.5rem;
         }
 
         .achievements-link {
@@ -181,13 +183,15 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            position: relative;
         }
 
         .dropdown-menu {
             display: none;
             position: absolute;
             top: 100%;
-            right: 0;
+            left: 50;
+            transform: none;
             background: rgba(10, 34, 57, 0.98);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -195,6 +199,7 @@
             list-style: none;
             padding: 1rem;
             z-index: 50;
+            min-width: 150px;
         }
 
         .dropdown-menu.show {
@@ -217,6 +222,7 @@
         .right-insignia {
             height: 48px;
             width: auto;
+            margin-left: 0.5rem
         }
 
         .mobile-menu-btn {
@@ -1483,7 +1489,6 @@
 </body>
 
 </html>
-
 
 
 
