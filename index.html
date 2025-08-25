@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2 TN Air Squadron NCC - Coimbatore Group</title>
+    <meta name="description" content="Join 2 TN Air Squadron NCC at KPRIET, Coimbatore Group. Discover aviation training, leadership development, and community service opportunities.">
+    <meta name="keywords" content="NCC Air Wing, 2 TN Air Squadron, Coimbatore NCC, KPRIET NCC, aviation training, leadership development">
+    <meta property="og:title" content="2 TN Air Squadron NCC - Coimbatore Group">
+    <meta property="og:description" content="Become a part of the elite NCC Air Wing at KPRIET. Explore aviation, leadership, and nation-building opportunities.">
+    <meta property="og:image" content="images/ncc-logo.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" as="style">
+    <link rel="preload" href="images/ncc-training-1.jpg" as="image">
     <style>
         :root {
             --iaf-blue: #1f4e79;
@@ -105,6 +113,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 40;
             padding: 1rem 0;
+            transition: background 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(10, 34, 57, 1);
         }
 
         .nav {
@@ -190,7 +203,8 @@
             display: none;
             position: absolute;
             top: 100%;
-            left: 50;
+            right: 0;
+            left: auto;
             transform: none;
             background: rgba(10, 34, 57, 0.98);
             backdrop-filter: blur(20px);
@@ -423,7 +437,7 @@
 
         .section p {
             font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -484,7 +498,7 @@
         }
 
         .card p {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 1.5rem;
         }
 
@@ -503,7 +517,7 @@
 
         .ano-image {
             width: 100%;
-            max-height: 400px;
+            max-height: 800px;
             object-fit: cover;
             border-radius: 20px;
             margin-bottom: 1rem;
@@ -593,26 +607,32 @@
             overflow: hidden;
             position: relative;
         }
-        
-        /* 3D Photo Carousel */
+
+        .video-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Photo Carousel */
         .photo-carousel-container {
-            perspective: 1200px; /* Adjusted for a more immersive 3D depth effect */
+            perspective: 1200px;
             position: relative;
-            height: 600px; /* Increased height for larger visibility */
+            height: 600px;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Prevents overflow during rotation */
-            margin: 2rem 0; /* Increased top margin to ensure full visibility below the "Photo Gallery" text */
+            overflow: hidden;
+            margin: 2rem 0;
         }
 
         .photo-carousel {
             position: absolute;
-            width: 500px; /* Increased width for larger carousel base */
+            width: 500px;
             height: 50%;
-            transform-style: preserve-3d; /* Enables 3D transforms on children */
-            animation: carousel-rotate 50s infinite linear; /* Faster rotation for more dynamic feel (20s per cycle) */
+            transform-style: preserve-3d;
+            animation: carousel-rotate 50s infinite linear;
         }
 
         @keyframes carousel-rotate {
@@ -626,9 +646,9 @@
 
         .photo-carousel-item {
             position: absolute;
-            width: 500px; /* Significantly increased item width for larger images */
-            height: 300px; /* Increased height to make items taller and more prominent */
-            background: linear-gradient(135deg, var(--ncc-lightnavy), var(--iaf-blue)); /* Keep your existing gradient */
+            width: 500px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--ncc-lightnavy), var(--iaf-blue));
             border-radius: 12px;
             overflow: hidden;
             display: flex;
@@ -636,154 +656,30 @@
             justify-content: center;
             color: rgba(255, 255, 255, 0.7);
             font-size: 3rem;
-            transition: transform 0.3s ease; /* Smooth hover effect */
-            backface-visibility: hidden; /* Hides back side during rotation */
-            transform: rotateY(calc(var(--i) * 60deg)) translateZ(500px); /* Reduced Z-translation for closer spacing between items, creating a tighter circle */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Added shadow for depth and creativity */
+            transition: transform 0.3s ease;
+            backface-visibility: hidden;
+            transform: rotateY(calc(var(--i) * 60deg)) translateZ(500px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        
-
-        /* If using <img> tags inside items (recommended for real images) */
         .photo-carousel-image {
-            width: 200%;
+            width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures images fill the item without distortion */
+            object-fit: cover;
         }
 
-        
-
-        /* Form Styles */
-        .form-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-header {
+        /* QR Code */
+        .qr-code-container {
             text-align: center;
-            margin-bottom: 2rem;
+            margin: 2rem 0;
         }
 
-        .form-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--iaf-blue), var(--iaf-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .form-label {
-            display: block;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .qr-code-image {
+            width: 200px;
+            height: 200px;
             border-radius: 12px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--iaf-blue);
-            box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.15);
-        }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.5rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-        }
-
-        .form-select option {
-            background: var(--ncc-navy);
-            color: white;
-        }
-
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .radio-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .radio-input {
-            width: 1.25rem;
-            height: 1.25rem;
-            accent-color: var(--iaf-blue);
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .checkbox-input {
-            width: 1.25rem;
-            height: 1.25rem;
-            margin-top: 0.125rem;
-            accent-color: var(--iaf-blue);
-        }
-
-        .checkbox-label {
-            flex: 1;
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.125rem;
-            margin-top: 1rem;
-        }
-
-        .btn-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
         }
 
         /* Contact Info */
@@ -885,6 +781,28 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--iaf-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .dropdown-btn {
@@ -919,6 +837,15 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .photo-carousel-item {
+                transform: rotateY(calc(var(--i) * 60deg)) translateZ(300px);
+            }
+            .photo-carousel-container {
+                height: 400px;
+            }
+        }
+
         /* Utility Classes */
         .text-center { text-align: center; }
         .text-left { text-align: left; }
@@ -939,6 +866,22 @@
         .gap-4 { gap: 1rem; }
         .w-full { width: 100%; }
     </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "2 TN Air Squadron NCC",
+        "description": "National Cadet Corps Air Wing unit at KPRIET, Coimbatore Group, dedicated to youth development and leadership training.",
+        "url": "https://yourwebsite.com",
+        "logo": "https://yourwebsite.com/images/ncc-symbol.png",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Coimbatore",
+            "addressRegion": "Tamil Nadu",
+            "addressCountry": "India"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Tricolor Banner -->
@@ -948,7 +891,7 @@
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <img src="images/iaf-roundel.png" alt="Indian Air Force Roundel" class="left-insignia">
+                <img src="images/iaf-roundel.png" alt="Indian Air Force Roundel Logo" class="left-insignia">
                 <div class="logo">
                     <div class="logo-icon">✈️</div>
                     <div class="logo-text">
@@ -959,7 +902,7 @@
                 </div>
                 <div class="right-section">
                     <a href="achievements.html" class="achievements-link">Achievements</a>
-                    <button class="dropdown-btn" id="dropdown-btn">☰</button>
+                    <button class="dropdown-btn" id="dropdown-btn" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
                     <ul class="dropdown-menu" id="dropdown-menu">
                         <li><a href="#home" class="dropdown-link">Home</a></li>
                         <li><a href="#about" class="dropdown-link">About</a></li>
@@ -969,8 +912,8 @@
                         <li><a href="#benefits" class="dropdown-link">Benefits</a></li>
                         <li><a href="#contact" class="dropdown-link">Contact</a></li>
                     </ul>
-                 </div>
-                <img src="images/ncc-symbol.png" alt="NCC Symbol" class="right-insignia">
+                </div>
+                <img src="images/ncc-symbol.png" alt="National Cadet Corps Symbol" class="right-insignia">
             </nav>
         </div>
     </header>
@@ -991,7 +934,7 @@
             </p>
             <div class="btn-group">
                 <a href="#about" class="btn primary">✈️ Why Air Wing?</a>
-                <a href="#contact" class="btn secondary">➡️ Apply to Join</a>
+                <a href="#contact" class="btn secondary">➡️ Contact Us</a>
             </div>
             <div class="values">
                 <div class="value-item">
@@ -1054,15 +997,15 @@
                     <span class="section-tag-text">OUR LEADER</span>
                 </div>
                 <h2 class="headline">About Our ANO</h2>
-                <p>Meet the dedicated Associate NCC Officer who guides our squadron with vision and commitment.</p>
+                <p>Meet Flying Officer Dr. Suriya Uma Devi S, who guides our squadron with vision and commitment.</p>
             </div>
             <div class="grid grid-2">
                 <div class="card reveal">
-                    <img src="https://via.placeholder.com/300x400?text=ANO+Picture" alt="ANO Picture" class="ano-image">
+                    <img src="images/ano-picture.jpg" alt="Flying Officer Dr. Suriya Uma Devi S Portrait" class="ano-image" loading="lazy">
                 </div>
                 <div class="card reveal">
-                    <h3>Our Associate NCC Officer</h3>
-                    <p>Our Associate NCC Officer (ANO) is the backbone of 2 TN Air Squadron NCC, leading with dedication and inspiring cadets to achieve excellence. With extensive experience in training and mentoring, our ANO brings a wealth of knowledge in military discipline, aviation, and leadership development.</p>
+                    <h3>Flying Officer Dr. Suriya Uma Devi S</h3>
+                    <p>Our Associate NCC Officer (ANO), Flying Officer Dr. Suriya Uma Devi S, is the backbone of 2 TN Air Squadron NCC, leading with dedication and inspiring cadets to achieve excellence. With extensive experience in training and mentoring, she brings a wealth of knowledge in military discipline, aviation, and leadership development.</p>
                     <p>Under her guidance, cadets undergo rigorous training programs that instill values of unity, discipline, and service. Her commitment to youth development and nation-building ensures that every cadet is prepared for both personal and professional success.</p>
                     <ul class="card-features">
                         <li>🎓 <span>Expert in NCC training methodologies</span></li>
@@ -1087,28 +1030,53 @@
                 <p>A collection of prestigious moments from our unit's awards, activities, and achievements.</p>
             </div>
             <div class="photo-carousel-container reveal">
-      <div class="photo-carousel">
-        <div class="photo-carousel-item" style="--i:0">📸 Add Photo 1</div>
-        <div class="photo-carousel-item" style="--i:1">📸 Add Photo 2</div>
-        <div class="photo-carousel-item" style="--i:2">📸 Add Photo 3</div>
-        <div class="photo-carousel-item" style="--i:3">📸 Add Photo 4</div>
-        <div class="photo-carousel-item" style="--i:4">📸 Add Photo 5</div>
-        <div class="photo-carousel-item" style="--i:5">📸 Add Photo 6</div>
-      </div>
-    </div>
+                <div class="photo-carousel">
+                    <div class="photo-carousel-item" style="--i:0">
+                        <img src="images/ncc-training-1.jpg" alt="NCC cadets during aviation training" class="photo-carousel-image" loading="lazy">
+                    </div>
+                    <div class="photo-carousel-item" style="--i:1">
+                        <img src="images/ncc-training-2.jpg" alt="NCC parade at Coimbatore Group" class="photo-carousel-image" loading="lazy">
+                    </div>
+                    <div class="photo-carousel-item" style="--i:2">
+                        <img src="images/ncc-training-3.jpg" alt="NCC national camp" class="photo-carousel-image" loading="lazy">
+                    </div>
+                    <div class="photo-carousel-item" style="--i:3">
+                        <img src="images/ncc-training-4.jpg" alt="NCC social service event" class="photo-carousel-image" loading="lazy">
+                    </div>
+                    <div class="photo-carousel-item" style="--i:4">
+                        <img src="images/ncc-training-5.jpg" alt="NCC award ceremony" class="photo-carousel-image" loading="lazy">
+                    </div>
+                    <div class="photo-carousel-item" style="--i:5">
+                        <img src="images/ncc-training-6.jpg" alt="NCC drill practice" class="photo-carousel-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
             <div class="section-header mt-6 reveal">
+                <div class="section-tag">
+                    <div class="section-tag-icon">🎥</div>
+                    <span class="section-tag-text">OUR VIDEOS</span>
+                </div>
                 <h2 class="headline">Video Gallery</h2>
                 <p>Watch our cadets in action through drill videos and training sessions.</p>
             </div>
-            <div class="grid grid-3 reveal">
+            <div class="grid grid-2 reveal">
                 <div class="video-item">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/placeholder1" title="Video 1" frameborder="0" allowfullscreen></iframe>
+                    <video controls poster="images/ncc-drill-1-poster.png">
+                        <source src="videos/ncc-drill-1.mp4" type="video/mp4">
+                        <p>Your browser does not support the video tag. <a href="videos/ncc-drill-1.mp4">Download the video</a>.</p>
+                    </video>
                 </div>
                 <div class="video-item">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/placeholder2" title="Video 2" frameborder="0" allowfullscreen></iframe>
+                    <video controls poster="images/ncc-drill-2-poster.png">
+                        <source src="videos/ncc-drill-2.mp4" type="video/mp4">
+                        <p>Your browser does not support the video tag. <a href="videos/ncc-aviation-2.mp4">Download the video</a>.</p>
+                    </video>
                 </div>
                 <div class="video-item">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/placeholder3" title="Video 3" frameborder="0" allowfullscreen></iframe>
+                    <video controls poster="images/ncc-drill-3-poster.jpg">
+                        <source src="videos/ncc-drill-3.mp4" type="video/mp4">
+                        <p>Your browser does not support the video tag. <a href="videos/ncc-aviation-2.mp4">Download the video</a>.</p>
+                    </video>
                 </div>
             </div>
         </div>
@@ -1160,14 +1128,14 @@
                     </ul>
                 </div>
                 <div class="card reveal">
-                    <div class="card-icon">🗺️</div>
-                    <h3>Field Training</h3>
-                    <p>Outdoor training exercises including map reading, navigation, survival skills, and tactical operations in realistic environments.</p>
+                    <div class="card-icon">🧠</div>
+                    <h3>Critical Thinking & Problem Solving</h3>
+                    <p>Training to develop analytical skills, strategic thinking, and effective problem-solving abilities for real-world challenges.</p>
                     <ul class="card-features">
-                        <li>🧭 Navigation Skills</li>
-                        <li>⛺ Survival Training</li>
-                        <li>🏕️ Camp Activities</li>
-                        <li>⚔️ Tactical Exercises</li>
+                        <li>🧩 Problem-Solving Exercises</li>
+                        <li>📊 Strategic Planning</li>
+                        <li>🧠 Critical Analysis</li>
+                        <li>🤔 Decision-Making Scenarios</li>
                     </ul>
                 </div>
                 <div class="card reveal">
@@ -1210,9 +1178,8 @@
             <div class="gallery reveal">
                 <div class="gallery-item">🌳</div>
                 <div class="gallery-item">🩺</div>
-                <div class="gallery-item">📚</div>
             </div>
-            <div class="grid grid-3 mt-6">
+            <div class="grid grid-2 mt-6">
                 <div class="card reveal">
                     <div class="card-icon">🌳</div>
                     <h3>Environmental Conservation</h3>
@@ -1222,11 +1189,6 @@
                     <div class="card-icon">🩺</div>
                     <h3>Health & Wellness</h3>
                     <p>Health awareness campaigns, blood donation drives, and first aid training programs for community health improvement.</p>
-                </div>
-                <div class="card reveal">
-                    <div class="card-icon">📚</div>
-                    <h3>Education Support</h3>
-                    <p>Literacy programs, educational material distribution, and tutoring sessions for underprivileged children in rural areas.</p>
                 </div>
             </div>
         </div>
@@ -1325,107 +1287,35 @@
                         <div class="contact-icon">📍</div>
                         <div class="contact-text">
                             <div class="contact-title">Squadron Location</div>
-                            <div class="contact-subtitle">Coimbatore Group, Tamil Nadu</div>
+                            <div class="contact-subtitle">KPRIET, Coimbatore, Tamil Nadu</div>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">📞</div>
                         <div class="contact-text">
-                            <div class="contact-title">Contact Number</div>
-                            <div class="contact-subtitle">Available on Request</div>
+                            <div class="contact-title">Contact Numbers</div>
+                            <div class="contact-subtitle">CWO Dhakshinkumar: 9092379472<br>CWO Madhumita: 9566637789</div>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">📅</div>
                         <div class="contact-text">
                             <div class="contact-title">Recruitment Period</div>
-                            <div class="contact-subtitle">September - October (Annual)</div>
+                            <div class="contact-subtitle">September</div>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">🎓</div>
                         <div class="contact-text">
                             <div class="contact-title">Eligibility</div>
-                            <div class="contact-subtitle">College Students (Age 17-26)</div>
+                            <div class="contact-subtitle">1st or 2nd Year College Students</div>
                         </div>
                     </div>
                 </div>
-                <div class="form-container reveal">
-                    <div class="form-header">
-                        <div class="form-icon">📝</div>
-                        <h3>Express Your Interest</h3>
-                        <p>Fill out the form below and we'll get back to you with recruitment details.</p>
-                    </div>
-                    <form id="contact-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label" for="firstName">First Name *</label>
-                                <input class="form-input" type="text" id="firstName" name="firstName" placeholder="First Name" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="lastName">Last Name *</label>
-                                <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="email">Email Address *</label>
-                            <input class="form-input" type="email" id="email" name="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="phone">Phone Number *</label>
-                            <input class="form-input" type="tel" id="phone" name="phone" placeholder="Phone Number" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label" for="college">College/Institution *</label>
-                                <input class="form-input" type="text" id="college" name="college" placeholder="College/Institution" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="year">Year of Study *</label>
-                                <select class="form-input form-select" id="year" name="year" required>
-                                    <option value="" disabled selected>Select Year</option>
-                                    <option value="1st Year">1st Year</option>
-                                    <option value="2nd Year">2nd Year</option>
-                                    <option value="3rd Year">3rd Year</option>
-                                    <option value="4th Year">4th Year</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="course">Course/Degree *</label>
-                            <input class="form-input" type="text" id="course" name="course" placeholder="Course/Degree" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="motivation">Why do you want to join NCC Air Wing?</label>
-                            <textarea class="form-input form-textarea" id="motivation" name="motivation" placeholder="Your motivation"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Previous Military/Disciplinary Experience</label>
-                            <div class="radio-group">
-                                <div class="radio-item">
-                                    <input class="radio-input" type="radio" id="no-experience" name="experience" value="No previous experience" checked>
-                                    <label class="form-label" for="no-experience">No previous experience</label>
-                                </div>
-                                <div class="radio-item">
-                                    <input class="radio-input" type="radio" id="ncc-experience" name="experience" value="Previous NCC experience">
-                                    <label class="form-label" for="ncc-experience">Previous NCC experience</label>
-                                </div>
-                                <div class="radio-item">
-                                    <input class="radio-input" type="radio" id="other-experience" name="experience" value="Other military/disciplinary training">
-                                    <label class="form-label" for="other-experience">Other military/disciplinary training</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox-group">
-                                <input class="checkbox-input" type="checkbox" id="terms" name="terms" required>
-                                <label class="checkbox-label" for="terms">
-                                    I agree to the terms and conditions and understand that this form is for expressing interest. Official recruitment process will be conducted separately. *
-                                </label>
-                            </div>
-                        </div>
-                        <button class="btn btn-submit" type="submit">Submit Application</button>
-                    </form>
+                <div class="qr-code-container reveal">
+                    <h3>Join Our WhatsApp Group</h3>
+                    <p>Scan the QR code below to connect with us and stay updated on recruitment and activities.</p>
+                    <img src="images/whatsapp-qr.jpg" alt="WhatsApp Group QR Code" class="qr-code-image" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1454,13 +1344,18 @@
         </div>
     </footer>
 
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+
     <script>
         // Dropdown Menu Toggle
         const dropdownBtn = document.getElementById('dropdown-btn');
         const dropdownMenu = document.getElementById('dropdown-menu');
 
         if (dropdownBtn && dropdownMenu) {
-            dropdownBtn.addEventListener('click', () => dropdownMenu.classList.toggle('show'));
+            dropdownBtn.addEventListener('click', () => {
+                const isExpanded = dropdownMenu.classList.toggle('show');
+                dropdownBtn.setAttribute('aria-expanded', isExpanded);
+            });
 
             document.querySelectorAll('.dropdown-link').forEach(link => {
                 link.addEventListener('click', () => dropdownMenu.classList.remove('show'));
@@ -1474,7 +1369,19 @@
             });
         }
 
-        // Reveal animations
+        // Reveal animations with debounce
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
         function revealElements() {
             document.querySelectorAll('.reveal').forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -1484,7 +1391,7 @@
                 }
             });
         }
-        window.addEventListener('scroll', revealElements);
+        window.addEventListener('scroll', debounce(revealElements, 100));
         window.addEventListener('load', revealElements);
 
         // Smooth scroll
@@ -1500,53 +1407,20 @@
             });
         });
 
-        // Form submission
-        const form = document.getElementById('contact-form');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                const data = Object.fromEntries(formData);
-
-                // Required fields
-                const required = ['firstName', 'lastName', 'email', 'phone', 'college', 'year', 'course'];
-                const missing = required.filter(f => !data[f]);
-                if (missing.length) {
-                    alert(`Please fill: ${missing.join(', ')}`);
-                    return;
-                }
-
-                // Email validation
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-                    alert('Invalid email');
-                    return;
-                }
-
-                // Phone validation
-                if (!/^\+?[\d\s\-\(\)]{10,}$/.test(data.phone)) {
-                    alert('Invalid phone number');
-                    return;
-                }
-
-                // Terms
-                if (!data.terms) {
-                    alert('You must accept terms');
-                    return;
-                }
-
-                alert('✅ Thank you! We will contact you soon.');
-                this.reset();
-            });
-        }
-
         // Header background on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (header) {
-                header.style.background = 'rgba(10, 34, 57, 0.98)';
-            }
+        window.addEventListener('scroll', () => {
+            document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 0);
+        });
+
+        // Back to Top
+        const backToTopBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTopBtn.classList.toggle('show', window.scrollY > 300);
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
-
 </html>
