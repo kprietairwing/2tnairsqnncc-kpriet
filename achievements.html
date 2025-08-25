@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Achievements of 2 TN Air Squadron NCC, Coimbatore Group at KPRIET">
     <title>Achievements - 2 TN Air Squadron NCC - Coimbatore Group</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +17,7 @@
             --ncc-green: #2f855a;
             --ncc-navy: #0a2239;
             --ncc-lightnavy: #1a3a5c;
+            --transition-base: 0.3s ease;
         }
 
         * {
@@ -32,7 +34,7 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background: linear-gradient(135deg, var(--ncc-navy) 0%, var(--ncc-lightnavy) 100%);
             color: white;
-            line-height: 1.7; /* Increased from 1.6 */
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
@@ -40,7 +42,7 @@
             font-family: 'Rajdhani', 'Inter', sans-serif;
             letter-spacing: 0.01em;
             font-weight: 600;
-            line-height: 1.3; /* Better line height for headlines */
+            line-height: 1.3;
         }
 
         /* Animations */
@@ -79,6 +81,30 @@
             animation: fadeIn 0.8s ease-out;
         }
 
+        /* Image Loading Animation */
+        .image-loading {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-loading::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            z-index: 1;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
         /* Container */
         .container {
             max-width: 1200px;
@@ -105,7 +131,7 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 40;
-            padding: 1.2rem 0; /* Increased padding */
+            padding: 1.2rem 0;
         }
 
         .nav {
@@ -123,7 +149,7 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 1rem; /* Increased gap */
+            gap: 1rem;
             transform: translateX(2rem);
         }
 
@@ -142,13 +168,13 @@
             font-size: 1.25rem;
             font-weight: 700;
             text-align: center;
-            line-height: 1.4; /* Better line spacing for logo text */
+            line-height: 1.4;
         }
 
         .right-section {
             display: flex;
             align-items: center;
-            gap: 1.5rem; /* Increased gap */
+            gap: 1.5rem;
             margin-right: 1.5rem;
         }
 
@@ -156,7 +182,7 @@
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color var(--transition-base);
             position: relative;
         }
 
@@ -172,7 +198,7 @@
             width: 0;
             height: 2px;
             background: var(--iaf-light);
-            transition: width 0.3s ease;
+            transition: width var(--transition-base);
         }
 
         .achievements-link:hover::after {
@@ -185,23 +211,28 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
-            position: relative;
+            display: none;
+            transition: transform var(--transition-base);
+        }
+
+        .dropdown-btn:hover {
+            transform: rotate(90deg);
         }
 
         .dropdown-menu {
             display: none;
-            position: absolute;
-            top: 100%;
-            left: 50;
-            transform: none;
+            position: fixed;
+            top: 76px;
+            left: 0;
+            right: 0;
             background: rgba(10, 34, 57, 0.98);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 0 0 8px 8px;
             list-style: none;
-            padding: 1.5rem; /* Increased padding */
+            padding: 1.5rem;
             z-index: 50;
-            min-width: 150px;
+            width: 100%;
         }
 
         .dropdown-menu.show {
@@ -213,8 +244,8 @@
             text-decoration: none;
             font-weight: 500;
             display: block;
-            padding: 0.75rem 1rem; /* Increased padding */
-            transition: color 0.3s ease;
+            padding: 0.75rem 1rem;
+            transition: color var(--transition-base);
         }
 
         .dropdown-link:hover {
@@ -224,74 +255,100 @@
         .right-insignia {
             height: 48px;
             width: auto;
-            margin-left: 0.5rem
+            margin-left: 0.5rem;
         }
 
-        .mobile-menu-btn {
-            display: none;
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--iaf-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            z-index: 100;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--iaf-light);
+            transform: translateY(-5px);
         }
 
         /* Section Styles */
         .section {
-            padding: 6rem 0; /* Increased from 5rem */
+            padding: 6rem 0;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .section:first-of-type {
-            padding-top: 4rem; /* Reduced first section top padding since header is now positioned better */
-            border-top: none; /* Remove border from first section */
+            padding-top: 4rem;
+            border-top: none;
         }
 
         .section-header {
-            text-align: left; /* Changed from center to left */
-            margin-bottom: 6rem; /* Increased margin */
-            padding-top: 2rem; /* Added top padding */
+            text-align: left;
+            margin-bottom: 6rem;
+            padding-top: 2rem;
         }
 
         .section-tag {
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Changed from center to flex-start */
-            gap: 1.5rem; /* Increased gap */
-            margin-bottom: 2.5rem; /* Increased margin */
+            justify-content: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .section-tag-icon {
-            width: 64px; /* Increased size */
-            height: 64px; /* Increased size */
+            width: 64px;
+            height: 64px;
             background: var(--iaf-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem; /* Added font size for icon */
+            font-size: 1.8rem;
         }
 
         .section-tag-text {
             color: var(--iaf-light);
             font-weight: 600;
             letter-spacing: 0.05em;
-            font-size: 1.1rem; /* Increased font size */
+            font-size: 1.1rem;
         }
 
         .section h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem); /* Increased font sizes */
-            margin-bottom: 2.5rem; /* Increased margin */
-            line-height: 1.1; /* Tighter line height for larger text */
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 2.5rem;
+            line-height: 1.1;
         }
 
         .section p {
-            font-size: 1.25rem; /* Increased font size */
+            font-size: 1.25rem;
             color: rgba(255, 255, 255, 0.7);
-            max-width: none; /* Removed max-width constraint */
-            margin: 0 0 2rem 0; /* Removed auto centering */
-            line-height: 1.8; /* Improved line height */
+            margin: 0 0 2rem 0;
+            line-height: 1.8;
         }
 
         /* Grid Layouts */
         .grid {
             display: grid;
-            gap: 3rem; /* Increased from 2rem */
+            gap: 3rem;
         }
 
         .grid-2 {
@@ -302,13 +359,17 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
 
+        .grid-5 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
         /* Cards */
         .card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2.5rem; /* Increased padding */
-            transition: all 0.3s ease;
+            padding: 2.5rem;
+            transition: all var(--transition-base);
             text-align: center;
         }
 
@@ -320,7 +381,7 @@
         .special-card {
             background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(15, 76, 129, 0.1));
             box-shadow: 0 0 20px rgba(74, 144, 226, 0.2);
-            margin-top: 3rem; /* Increased spacing */
+            margin-top: 3rem;
         }
 
         .special-card:hover {
@@ -330,7 +391,7 @@
         .card-icon {
             width: 64px;
             height: 64px;
-            margin: 0 auto 2rem; /* Increased bottom margin */
+            margin: 0 auto 2rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -341,61 +402,67 @@
 
         .card h3 {
             font-size: 1.5rem;
-            margin-bottom: 1.5rem; /* Increased from 1rem */
+            margin-bottom: 1.5rem;
             line-height: 1.3;
         }
 
         .card p {
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem; /* Increased from 1.5rem */
+            margin-bottom: 2rem;
             line-height: 1.7;
         }
 
-        .card-features {
-            list-style: none;
-            text-align: left;
-        }
-
-        .card-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem; /* Increased gap */
-            margin-bottom: 0.75rem; /* Increased margin */
-            font-size: 0.875rem;
-            line-height: 1.6;
-        }
-
-        .ano-image {
+        .ano-image, .company-logo {
             width: 100%;
             max-height: 400px;
             object-fit: cover;
             border-radius: 20px;
-            margin-bottom: 1.5rem; /* Increased margin */
+            margin-bottom: 1.5rem;
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .ano-image:hover, .company-logo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .poster-image {
+            width: 100%;
+            max-height: 800px;
+            object-fit: contain;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .poster-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .about-left {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-            padding: 3rem; /* Increased padding */
+            padding: 3rem;
         }
 
         /* Sidebar and Content */
         .main-container {
             display: flex;
-            gap: 3rem; /* Increased gap */
-            padding: 8rem 0 6rem 0; /* Increased top padding to push content down */
+            gap: 3rem;
+            padding: 8rem 0 6rem 0;
             align-items: flex-start;
         }
 
         .sidebar {
-            width: 280px; /* Increased width */
+            width: 280px;
             position: sticky;
-            top: 140px; /* Adjusted for header height */
+            top: 140px;
             height: fit-content;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2.5rem; /* Increased padding */
+            padding: 2.5rem;
         }
 
         .sidebar ul {
@@ -403,47 +470,45 @@
         }
 
         .sidebar li {
-            margin-bottom: 1.5rem; /* Increased margin */
+            margin-bottom: 1.5rem;
         }
 
         .sidebar a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color var(--transition-base);
             line-height: 1.6;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 8px;
         }
 
         .sidebar a:hover {
             color: var(--iaf-light);
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        .content {
-            flex: 1;
-        }
-
-        /* Company Logo */
-        .company-logo {
-            height: 100px;
-            object-fit: contain;
-            margin-bottom: 1.5rem; /* Increased margin */
+        .sidebar a.active {
+            color: var(--iaf-light);
+            background: rgba(74, 144, 226, 0.1);
         }
 
         /* Footer */
         .footer {
-            padding: 4rem 0; /* Increased padding */
+            padding: 4rem 0;
             background: linear-gradient(to bottom, var(--ncc-navy), #000);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            margin-top: 4rem; /* Added top margin */
+            margin-top: 4rem;
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem; /* Increased gap */
-            margin-bottom: 2rem; /* Increased margin */
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .footer-logo-icon {
@@ -458,14 +523,14 @@
         }
 
         .footer-motto {
-            margin-bottom: 2.5rem; /* Increased margin */
+            margin-bottom: 2.5rem;
         }
 
         .footer-motto-main {
             font-size: 1.125rem;
             font-weight: 600;
             color: var(--iaf-light);
-            margin-bottom: 0.75rem; /* Increased margin */
+            margin-bottom: 0.75rem;
             line-height: 1.4;
         }
 
@@ -479,7 +544,7 @@
             background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
             height: 4px;
             width: 128px;
-            margin: 0 auto 2rem; /* Increased margin */
+            margin: 0 auto 2rem;
             border-radius: 2px;
         }
 
@@ -490,11 +555,29 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .right-section .achievements-link {
+                display: none;
+            }
+
+            .dropdown-btn {
+                display: block;
+            }
+
+            .grid-5 {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .poster-image {
+                max-height: 600px;
+            }
+        }
+
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
                 gap: 2rem;
-                padding: 6rem 0 4rem 0; /* Adjusted for mobile */
+                padding: 6rem 0 4rem 0;
             }
 
             .sidebar {
@@ -505,15 +588,15 @@
             }
 
             .section-header {
-                text-align: center; /* Center on mobile */
+                text-align: center;
             }
 
             .section-tag {
-                justify-content: center; /* Center on mobile */
+                justify-content: center;
             }
 
             .section p {
-                max-width: 100%; /* Full width on mobile */
+                max-width: 100%;
             }
 
             .section {
@@ -531,15 +614,23 @@
             .card {
                 padding: 2rem;
             }
+
+            .grid-5 {
+                grid-template-columns: 1fr;
+            }
+
+            .poster-image {
+                max-height: 400px;
+            }
         }
 
         /* Utility Classes */
         .text-center { text-align: center; }
-        .mb-4 { margin-bottom: 1.5rem; } /* Increased */
-        .mb-6 { margin-bottom: 2rem; } /* Increased */
-        .mt-6 { margin-top: 2rem; } /* Increased */
-        .mt-8 { margin-top: 3rem; } /* New utility */
-        .mb-8 { margin-bottom: 3rem; } /* New utility */
+        .mb-4 { margin-bottom: 1.5rem; }
+        .mb-6 { margin-bottom: 2rem; }
+        .mt-6 { margin-top: 2rem; }
+        .mt-8 { margin-top: 3rem; }
+        .mb-8 { margin-bottom: 3rem; }
     </style>
 </head>
 <body>
@@ -547,12 +638,12 @@
     <div class="tricolor"></div>
 
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
-            <nav class="nav">
+            <nav class="nav" aria-label="Main navigation">
                 <img src="images/iaf-roundel.png" alt="Indian Air Force Roundel" class="left-insignia">
                 <div class="logo">
-                    <div class="logo-icon">✈️</div>
+                    <div class="logo-icon" aria-hidden="true">✈️</div>
                     <div class="logo-text">
                         <span>2 TN AIR SQN NCC</span>
                         <span>KPRIET</span>
@@ -561,8 +652,8 @@
                 </div>
                 <div class="right-section">
                     <a href="index.html" class="achievements-link">Home</a>
-                    <button class="dropdown-btn" id="dropdown-btn">☰</button>
-                    <ul class="dropdown-menu" id="dropdown-menu">
+                    <button class="dropdown-btn" id="dropdown-btn" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+                    <ul class="dropdown-menu" id="dropdown-menu" aria-label="Navigation menu">
                         <li><a href="index.html#home" class="dropdown-link">Home</a></li>
                         <li><a href="index.html#about" class="dropdown-link">About</a></li>
                         <li><a href="index.html#ano" class="dropdown-link">About Our ANO</a></li>
@@ -571,19 +662,19 @@
                         <li><a href="index.html#benefits" class="dropdown-link">Benefits</a></li>
                         <li><a href="index.html#contact" class="dropdown-link">Contact</a></li>
                     </ul>
-                 </div>
+                </div>
                 <img src="images/ncc-symbol.png" alt="NCC Symbol" class="right-insignia">
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main>
+    <main role="main">
         <div class="container main-container">
             <!-- Sidebar -->
-            <aside class="sidebar reveal">
+            <aside class="sidebar reveal" aria-label="Achievements navigation">
                 <ul>
-                    <li><a href="#camps">NCC Camp Achievements</a></li>
+                    <li><a href="#camps" class="active">NCC Camp Achievements</a></li>
                     <li><a href="#defence">Defence Related Achievements</a></li>
                     <li><a href="#placements">Placement Achievements</a></li>
                 </ul>
@@ -593,7 +684,7 @@
             <div class="content">
                 <div class="section-header reveal">
                     <div class="section-tag">
-                        <div class="section-tag-icon">🏆</div>
+                        <div class="section-tag-icon" aria-hidden="true">🏆</div>
                         <span class="section-tag-text">OUR PRIDE</span>
                     </div>
                     <h2 class="headline">Achievements</h2>
@@ -605,12 +696,12 @@
                     <p>Over the past 5 years at KPRIET, our squadron has achieved remarkable milestones in national-level NCC camps.</p>
                     <div class="grid grid-2">
                         <div class="card">
-                            <div class="card-icon">🏕️</div>
+                            <div class="card-icon" aria-hidden="true">🏕️</div>
                             <h3>All India Vayu Sainik Camp (AIVSC)</h3>
                             <p>Nearly 12 cadets have represented our squadron at this prestigious aviation-focused camp, showcasing their skills in aeromodelling, flying, and air force drills.</p>
                         </div>
                         <div class="card">
-                            <div class="card-icon">🇮🇳</div>
+                            <div class="card-icon" aria-hidden="true">🇮🇳</div>
                             <h3>Republic Day Camp (RDC)</h3>
                             <p>4 cadets have had the honor of participating in the Republic Day Camp in Delhi, marching on Rajpath and representing Tamil Nadu Directorate.</p>
                         </div>
@@ -622,17 +713,17 @@
                     <p>Our cadets have excelled in defence selections and are preparing for high-level services. In addition to SSB recommendations, many are gearing up for Civil Services and Combined Defence Services (CDS) examinations to serve the nation in governance and defence roles.</p>
                     <div class="grid grid-3">
                         <div class="card">
-                            <img src="https://via.placeholder.com/300x200?text=CSUO+Krithick" alt="CSUO Krithick" class="ano-image">
+                            <img src="images/csuo-krithick.png" alt="CSUO Krithick" class="ano-image image-loading">
                             <h3>CSUO Krithick</h3>
                             <p>Recommended in SSB, Indian Army. A testament to dedication and excellence.</p>
                         </div>
                         <div class="card">
-                            <img src="https://via.placeholder.com/300x200?text=LFC+Ruth" alt="LFC Ruth" class="ano-image">
+                            <img src="images/lfc-ruth.png" alt="LFC Ruth" class="ano-image image-loading">
                             <h3>LFC Ruth</h3>
                             <p>Recommended in SSB, Indian Navy. Highlights exceptional dedication and hard work.</p>
                         </div>
                         <div class="card">
-                            <img src="https://via.placeholder.com/300x200?text=CSUO+Madhavan" alt="CSUO Madhavan" class="ano-image">
+                            <img src="images/cuo-madhavan.jpg" alt="CSUO Madhavan" class="ano-image image-loading">
                             <h3>CUO Madhavan</h3>
                             <p>Recommended in SSB [Placeholder]. Demonstrating outstanding leadership and commitment.</p>
                         </div>
@@ -645,31 +736,22 @@
 
                 <section id="placements" class="section reveal">
                     <h2>Placement Achievements</h2>
-                    <p>Discover how NCC training has propelled our cadets into influential roles in the corporate world. The discipline and skills acquired have crafted pathways to extraordinary careers. Below are some leading firms where our cadets are making an impact. (High LPA placements to be added soon.)</p>
-                    <div class="grid grid-3">
+                    <p>Discover how NCC training has propelled our cadets into influential roles in the corporate world. The discipline and skills acquired have crafted pathways to extraordinary careers. Below are posters of our cadets who have secured placements in leading companies.</p>
+                    <div class="grid grid-5">
                         <div class="card">
-                            <img src="https://via.placeholder.com/150x50?text=PNTCI" alt="PNTCI Logo" class="company-logo">
-                            <h3>PNTCI</h3>
+                            <img src="images/mrithika-poster.jpg" alt="Poster of Mrithika C, placed at Aarbee Structures Pvt. Ltd. with 4 LPA" class="poster-image image-loading">
                         </div>
                         <div class="card">
-                            <img src="https://via.placeholder.com/150x50?text=Accenture" alt="Accenture Logo" class="company-logo">
-                            <h3>Accenture</h3>
+                            <img src="images/cadet1-poster.jpg" alt="Poster of Cadet 1, placed at a leading company" class="poster-image image-loading">
                         </div>
                         <div class="card">
-                            <img src="https://via.placeholder.com/150x50?text=Swelect" alt="Swelect Logo" class="company-logo">
-                            <h3>Swelect</h3>
+                            <img src="images/cadet2-poster.jpg" alt="Poster of Cadet 2, placed at a leading company" class="poster-image image-loading">
                         </div>
                         <div class="card">
-                            <img src="https://via.placeholder.com/150x50?text=AARBEE" alt="AARBEE Logo" class="company-logo">
-                            <h3>AARBEE</h3>
+                            <img src="images/cadet3-poster.jpg" alt="Poster of Cadet 3, placed at a leading company" class="poster-image image-loading">
                         </div>
                         <div class="card">
-                            <img src="https://via.placeholder.com/150x50?text=ZF" alt="ZF Logo" class="company-logo">
-                            <h3>ZF</h3>
-                        </div>
-                        <div class="card">
-                            <img src="https://via.placeholder.com/150x50?text=OPEN+UP" alt="OPEN UP Logo" class="company-logo">
-                            <h3>OPEN UP</h3>
+                            <img src="images/cadet4-poster.jpg" alt="Poster of Cadet 4, placed at a leading company" class="poster-image image-loading">
                         </div>
                     </div>
                 </section>
@@ -677,11 +759,14 @@
         </div>
     </main>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-logo">
-                <div class="footer-logo-icon">✈️</div>
+                <div class="footer-logo-icon" aria-hidden="true">✈️</div>
                 <div class="logo-text">
                     <span>2 TN AIR SQN NCC</span>
                     <span>KPRIET</span>
@@ -701,42 +786,69 @@
     </footer>
 
     <script>
-        // Dropdown Menu Toggle
+        // Optimized Dropdown Menu Toggle
         const dropdownBtn = document.getElementById('dropdown-btn');
         const dropdownMenu = document.getElementById('dropdown-menu');
+        const backToTopBtn = document.getElementById('back-to-top');
 
+        // Dropdown menu functionality
         if (dropdownBtn && dropdownMenu) {
-            dropdownBtn.addEventListener('click', () => dropdownMenu.classList.toggle('show'));
+            const toggleDropdown = () => {
+                const isExpanded = dropdownMenu.classList.toggle('show');
+                dropdownBtn.setAttribute('aria-expanded', isExpanded);
+            };
+
+            dropdownBtn.addEventListener('click', toggleDropdown);
 
             document.querySelectorAll('.dropdown-link').forEach(link => {
-                link.addEventListener('click', () => dropdownMenu.classList.remove('show'));
+                link.addEventListener('click', () => {
+                    dropdownMenu.classList.remove('show');
+                    dropdownBtn.setAttribute('aria-expanded', 'false');
+                });
             });
 
-            // Close dropdown when clicking outside
             document.addEventListener('click', (e) => {
                 if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
                     dropdownMenu.classList.remove('show');
+                    dropdownBtn.setAttribute('aria-expanded', 'false');
                 }
             });
         }
 
-        // Reveal animations
-        function revealElements() {
+        // Reveal animations with Intersection Observer
+        const revealElements = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
             document.querySelectorAll('.reveal').forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 100;
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('show');
-                }
+                observer.observe(element);
+            });
+        };
+
+        // Back to top functionality
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                backToTopBtn.classList.toggle('show', window.scrollY > 300);
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
-        window.addEventListener('scroll', revealElements);
-        window.addEventListener('load', revealElements);
 
-        // Smooth scroll for sidebar links
-        document.querySelectorAll('.sidebar a').forEach(anchor => {
+        // Smooth scroll for sidebar links with active state
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+        sidebarLinks.forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                sidebarLinks.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     const headerHeight = document.querySelector('.header').offsetHeight;
@@ -746,12 +858,29 @@
             });
         });
 
-        // Header background on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (header) {
-                header.style.background = 'rgba(10, 34, 57, 0.98)';
-            }
+        // Image loading handler
+        document.querySelectorAll('.image-loading').forEach(img => {
+            img.addEventListener('load', () => {
+                img.classList.remove('image-loading');
+            });
+        });
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            revealElements();
+            // Set initial active sidebar link based on scroll position
+            const updateActiveLink = () => {
+                const scrollPosition = window.scrollY + 150;
+                sidebarLinks.forEach(link => {
+                    const section = document.querySelector(link.getAttribute('href'));
+                    if (section && section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+                        sidebarLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink();
         });
     </script>
 </body>
